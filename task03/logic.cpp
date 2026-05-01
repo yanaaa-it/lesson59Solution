@@ -20,24 +20,27 @@ int count_local_minimums(int* array, int size) {
 
 int* get_all_lacal_minimums(int* array, int size) {
 	int count = count_local_minimums(array, size);
-	int* min = new int[count];
+	int* minimums = new int[count];
 
 	int index = 0;
+
 	if (*array < *(array + 1)) {
-		min[index++] = *array;
+		minimums[index++] = *array;
 	}
+
 	for (int i = 0; i < size - 1; i++)
 	{
-
 		if (*(array + i) < *(array + i + 1)
 			&& *(array + i) < *(array + i - 1)) {
-			min[index++] = *(array + i);
+			minimums[index++] = *(array + i);
 		}
 	}
-	if (*(array + size - 1) < *(array + size - 2)) {
 
+	if (*(array + size - 1) < *(array + size - 2)) {
+		minimums[index] = *(array + size - 1);
 	}
-	return min;
+
+	return minimums;
 
 }
 int sum_local_minimums(int* array, int size) {
